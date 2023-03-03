@@ -1,0 +1,27 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+  
+  img {
+    width: 100%;
+    display: block;
+  }
+  
+  body {
+    height: 100%;
+    width: 100vw;
+  }
+  
+  .App {
+    display: grid;
+    grid-template-areas: 
+    'nav nav nav nav'
+    'side main main main'
+    'side main main main';
+  }
+  
+  .nab {
+    grid-area: nav;
+  }

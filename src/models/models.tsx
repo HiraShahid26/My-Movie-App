@@ -16,5 +16,6 @@ export interface DetailsType {
     title: string;
     popularity: number;
     release_date: string
-    backdrop_path: string;
+    poster_path: string;
+    overview: string;
 }

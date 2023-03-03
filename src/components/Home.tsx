@@ -3,27 +3,32 @@ import {useState, useEffect} from 'react'
 import {MovieType, CategoryType} from '../models/models'
 import {getAll} from '../api/movies'
 import { getAllCategories } from '../api/category'
+import { MoviesList } from './MoviesList'
+import { CategoryList } from './CategoryList'
+import { useAppContext } from '../context/CategoryContext'
 
 
 export const Home = () => {
-    const [movies, setMovies] = useState<MovieType[]>([])
+    // const [movies, setMovies] = useState<MovieType[]>([])
     const [categories, setCategories] = useState<CategoryType[]>([])
-    console.log(movies)
-    const getMovies = async () => {
-        const data = await getAll() 
-        setMovies(data)
-    }  
+    const {movies}= useAppContext()
+    
+    
     const getCategories = async () => {
         const genre = await getAllCategories() 
         setCategories(genre)
     }  
 
     useEffect(() => {
-        getMovies()
         getCategories()
     }, [])
   return (
-    <div>Home</div>
+    <div>
+        <div className="flex w-screen">
+        <CategoryList categories={categories}/>
+        <MoviesList films={movies} details={[]} />
+        </div>
+    </div>
   )
 
 }
