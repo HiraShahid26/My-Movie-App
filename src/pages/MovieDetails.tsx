@@ -9,8 +9,8 @@ export const MovieDetails = () => {
   const [moviesById, setMoviesById] = useState<DetailsType | null>(null);
 
   const getMoviesById = async (id: number) => {
-    const movieInfo: any = await getMovieById(id);
-    setMoviesById(movieInfo);
+    const movieInfo = await getMovieById(id);
+    setMoviesById(movieInfo??null);
   };
 
   useEffect(() => {

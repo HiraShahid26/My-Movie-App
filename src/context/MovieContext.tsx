@@ -22,13 +22,13 @@ export const MovieContextProvider = ({ children }: MovieContextProps) => {
   const [movies, setMovies] = useState<MovieType[]>([]);
 
   const getMovies = async () => {
-    const data: any = await getAll();
-    setMovies(data);
+    const data = await getAll();
+    setMovies(data??[]);
   };
 
   const getFilmsByCategory = async (idNum: number) => {
     const categories = await filterMoviesByCategory(idNum);
-    setMovies(categories as any);
+    setMovies(categories??[]);
   };
 
   useEffect(() => {
