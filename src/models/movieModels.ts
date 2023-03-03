@@ -6,11 +6,6 @@ export interface MovieType {
     release_date: string;
 }
 
-export interface CategoryType {
-    id: number
-    name: string
-}
-
 export interface DetailsType {
     language: string;
     title: string;

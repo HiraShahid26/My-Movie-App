@@ -1,19 +1,21 @@
-import React, { useContext } from 'react'
-import { useAppContext } from '../context/CategoryContext'
-import { CategoryType } from '../models/models'
-
+import React from "react";
+import { useMovieContext } from "../context/MovieContext";
+import { CategoryType } from "../models/categoryModel";
 
 type CategoriesProps = {
-    categories: CategoryType
-}
+  categories: CategoryType;
+};
 
-export const Categories = ({categories}: CategoriesProps) => {
-    const {getFilmsByCategory} = useAppContext()
+export const Categories = ({ categories }: CategoriesProps) => {
+  const { getFilmsByCategory } = useMovieContext();
   return (
     <div>
-        <li onClick= {()=> getFilmsByCategory(categories.id)} className="bg-slate-500 rounded mb-4 h-9 w-28 flex justify-center items-center cursor-pointer" >
-            {categories.name}
-        </li>
+      <li
+        onClick={() => getFilmsByCategory(categories.id)}
+        className="bg-slate-500 rounded mb-4 h-9 w-28 flex justify-center items-center cursor-pointer"
+      >
+        {categories.name}
+      </li>
     </div>
-  )
-}
+  );
+};
