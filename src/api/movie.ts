@@ -25,3 +25,11 @@ export const filterMoviesByCategory = async (idNum: number) => {
     .then((response) => response.data.results as MovieType[])
     .catch((err) => console.error(err));
 };
+
+export const searchMovies = async (valueSearch: string) => {
+  const SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${valueSearch}`;
+  return axios
+  .get(SEARCH)
+  .then(response =>  response.data.results as MovieType[] & DetailsType[])
+  .catch((err) => console.error(err));
+}
