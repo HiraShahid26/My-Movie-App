@@ -1,5 +1,5 @@
 import React, { useContext, useState, createContext, useEffect } from "react";
-import { filterMoviesByCategory } from "../api/movie";
+import { filterMoviesByCategory, searchMovies } from "../api/movie";
 import { getAll } from "../api/movie";
 import { MovieType } from "../models/movieModels";
 
@@ -10,6 +10,9 @@ type MovieContextProps = {
 type MovieContext = {
   getFilmsByCategory: (idNum: number) => void;
   movies: MovieType[];
+  search: string
+  setSearch: (searchValue: string) => void
+  searchFilmsbyName: (searchValue: string) => void
 };
 
 const MovieContext = createContext({} as MovieContext);
@@ -36,9 +39,7 @@ export const MovieContextProvider = ({ children }: MovieContextProps) => {
   }, []);
 
   return (
-    <MovieContext.Provider
-      value={{  getFilmsByCategory, movies }}
-    >
+    <MovieContext.Provider value={{ getFilmsByCategory, movies, search, setSearch, searchFilmsbyName }}>
       {children}
     </MovieContext.Provider>
   );
