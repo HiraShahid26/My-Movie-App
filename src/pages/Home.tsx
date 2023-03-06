@@ -9,20 +9,21 @@ import { CategoryType } from "../models/categoryModel";
 export const Home = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const { movies } = useMovieContext();
-  console.log(movies);
+
   const getCategories = async () => {
-    const genre: any = await getAllCategories();
-    setCategories(genre);
+    const genre = await getAllCategories();
+    setCategories(genre ?? []);
   };
 
   useEffect(() => {
     getCategories();
   }, []);
+
   return (
     <div>
       <div className="flex w-screen">
         <CategoryList categories={categories} />
-        <MoviesList films={movies} details={[]} />
+        <MoviesList films={movies} />
       </div>
     </div>
   );

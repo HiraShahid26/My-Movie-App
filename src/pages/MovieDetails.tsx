@@ -10,7 +10,7 @@ export const MovieDetails = () => {
 
   const getMoviesById = async (id: number) => {
     const movieInfo = await getMovieById(id);
-    setMoviesById(movieInfo??null);
+    setMoviesById(movieInfo ?? null);
   };
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export const MovieDetails = () => {
   if (moviesById === null) {
     return null;
   }
+  
   return (
     <div className="w-screen bg-slate-900 h-screen pt-10">
       <div className="w-11/12 flex justify-around items-center bg-slate-100 m-auto h-5/6 pl-8">
