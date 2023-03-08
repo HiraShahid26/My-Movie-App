@@ -9,15 +9,15 @@ export const MoviesList = () => {
 
   return (
     <div className="container-films bg-slate-100 w-full grid grid-cols-4 justify-items-center gap-5 pt-5">
-#      {movies
-#       .filter((movie) =>
-#           movie.title.toLowerCase().startsWith(search.toLowerCase())
-#         )
-#         .map((film: MovieType) => (
-#           <Link to={{ pathname: `/movie-details/${film.id}` }}>
-#             <MovieCard film={film} key={film.id} />
-#           </Link>
-#        ))}
+      {movies
+        .filter((movie) =>
+          movie.title.toLowerCase().startsWith(search.toLowerCase())
+        )
+        .map((film: MovieType) => (
+          <Link to={{ pathname: `/movie-details/${film.id}` }}>
+            <MovieCard film={film} key={film.id} />
+          </Link>
+        ))}
     </div>
   );
 };
