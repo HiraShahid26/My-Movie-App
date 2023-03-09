@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 
 export const Nav = () => {
-  const { search, setSearch, searchFilmsbyName } = useMovieContext();
+  const { searchFilmsbyName } = useMovieContext();
+  const [search, setSearch] = useState<string>("");
 
   return (
     <div className="nab w-full h-12 bg-slate-500 text-lg font-bold flex justify-between items-center text-white pl-4 pr-4">
@@ -18,8 +20,10 @@ export const Nav = () => {
       >
         <input
           type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            searchFilmsbyName(e.target.value);
+            setSearch(e.target.value);
+          }}
           className="text-black"
         />
         <button className="pl-1" type="submit">

@@ -12,9 +12,7 @@ type MovieContextProps = {
 type MovieContext = {
   movies: MovieType[];
   categories: CategoryType[];
-  search: string;
   getFilmsByCategory: (idNum: number) => void;
-  setSearch: (searchValue: string) => void;
   searchFilmsbyName: (searchValue: string) => void;
 };
 
@@ -28,7 +26,6 @@ export const useMovieContext = () => {
 export const MovieContextProvider = ({ children }: MovieContextProps) => {
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
-  const [search, setSearch] = useState("");
 
   const getMovies = async () => {
     const data = await getAll();
@@ -47,12 +44,6 @@ export const MovieContextProvider = ({ children }: MovieContextProps) => {
 
   const searchFilmsbyName = async (searchValue: string) => {
     const searchedFilm = await searchMovies(searchValue);
-    const filteredFilms =
-      searchValue === ""
-        ? movies
-        : movies.filter((film) => {
-            return film.title.toLowerCase().startsWith(searchValue);
-          });
     setMovies(searchedFilm ?? []);
   };
 
@@ -67,8 +58,6 @@ export const MovieContextProvider = ({ children }: MovieContextProps) => {
         getFilmsByCategory,
         categories,
         movies,
-        search,
-        setSearch,
         searchFilmsbyName,
       }}
     >
