@@ -1,6 +1,8 @@
 import React, { useContext, useState, createContext, useEffect } from "react";
+import { getAllCategories } from "../api/category";
 import { filterMoviesByCategory, searchMovies } from "../api/movie";
 import { getAll } from "../api/movie";
+import { CategoryType } from "../models/categoryModel";
 import { MovieType } from "../models/movieModels";
 
 type MovieContextProps = {
@@ -8,11 +10,10 @@ type MovieContextProps = {
 };
 
 type MovieContext = {
-  getFilmsByCategory: (idNum: number) => void;
   movies: MovieType[];
-  search: string
-  setSearch: (searchValue: string) => void
-  searchFilmsbyName: (searchValue: string) => void
+  categories: CategoryType[];
+  getFilmsByCategory: (idNum: number) => void;
+  searchFilmsbyName: (searchValue: string) => void;
 };
 
 const MovieContext = createContext({} as MovieContext);
@@ -24,11 +25,16 @@ export const useMovieContext = () => {
 
 export const MovieContextProvider = ({ children }: MovieContextProps) => {
   const [movies, setMovies] = useState<MovieType[]>([]);
-  const [search, setSearch] = useState(String);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
 
   const getMovies = async () => {
     const data = await getAll();
     setMovies(data ?? []);
+  };
+
+  const getCategories = async () => {
+    const genre = await getAllCategories();
+    setCategories(genre ?? []);
   };
 
   const getFilmsByCategory = async (idNum: number) => {
@@ -43,10 +49,18 @@ export const MovieContextProvider = ({ children }: MovieContextProps) => {
 
   useEffect(() => {
     getMovies();
+    getCategories();
   }, []);
 
   return (
-    <MovieContext.Provider value={{ getFilmsByCategory, movies, search, setSearch, searchFilmsbyName }}>
+    <MovieContext.Provider
+      value={{
+        getFilmsByCategory,
+        categories,
+        movies,
+        searchFilmsbyName,
+      }}
+    >
       {children}
     </MovieContext.Provider>
   );

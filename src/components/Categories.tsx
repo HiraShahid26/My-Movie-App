@@ -1,4 +1,3 @@
-import React from "react";
 import { useMovieContext } from "../context/MovieContext";
 import { CategoryType } from "../models/categoryModel";
 

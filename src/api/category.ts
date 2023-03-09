@@ -8,5 +8,3 @@ export const getAllCategories = async () => {
     .then((response) => response.data.genres as CategoryType[])
     .catch((err) => console.error(err));
 };
-
-

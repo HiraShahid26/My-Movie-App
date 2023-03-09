@@ -1,4 +1,3 @@
-import React from "react";
 import { MovieType } from "../models/movieModels";
 
 type MovieCardProps = {
